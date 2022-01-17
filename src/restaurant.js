@@ -93,7 +93,7 @@ const pay = () => {
       bill += menu.drink[menuOrder[i]];
     }
   }
-  return bill + bill * 0.1;
+  return bill + (bill * 0.1);
 };
 
 const createMenu = (comanda) => {
@@ -107,10 +107,10 @@ const createMenu = (comanda) => {
 };
 
 const objetoRetornado = createMenu({
-  food: {'coxinha': 3.90, 'sopa': 9.90},
-  drink: {'agua': 3.90, 'cerveja': 6.90}
+  food: { coxinha: 3.90, sopa: 9.90 },
+  drink: { agua: 3.90, cerveja: 6.90 },
 });
 // Testes:
-console.log(objetoRetornado.consumption)
+console.log(objetoRetornado.consumption);
 
 module.exports = createMenu;

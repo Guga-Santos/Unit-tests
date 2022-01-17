@@ -47,16 +47,15 @@ return {
   mult,
   div,
   sub,
-}
-
+};
 };
 
 const arrayGenerator = (type, object) => {
   if (type === 'keys') {
     return Object.keys(object);
-  } else if (type === 'values') {
+  } if (type === 'values') {
     return Object.values(object);
-  } else if (type === 'entries') {
+  } if (type === 'entries') {
     return Object.entries(object);
   }
 };

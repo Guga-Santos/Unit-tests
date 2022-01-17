@@ -15,6 +15,13 @@
     estudante.feedback() // Retorna: 'Eita pessoa boa!'
 */
 
-const createStudent = () => {};
+const createStudent = (name) => {
+  const estudante = {
+    name,
+    feedback: () => 'Eita pessoa boa!',
+  }
+  return estudante;
+};
+// Utilizei essa documentação: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/Arrow_functions
 
 module.exports = createStudent;

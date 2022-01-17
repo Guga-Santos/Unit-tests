@@ -33,8 +33,36 @@
   arrayGenerator('entries', { sum: 3, mult: 2, div: 1, sub: 0 }) // [ [ 'sum', 3 ], [ 'mult', 2 ], [ 'div', 1 ], [ 'sub', 0 ] ]
 */
 
-const calculator = (number1, number2) => {};
+const calculator = (number1, number2) => {
+  const sum = number1 + number2;
+  const mult = number1 * number2;
+  const div = Math.trunc(number1 / number2);
+  const sub = number1 - number2;
 
-const arrayGenerator = (type, object) => {};
+  // Utilizei essa documentação https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc
+  // Achei quando pesquisei "Arredondar para baixo" no google.
+
+return {
+  sum,
+  mult,
+  div,
+  sub,
+}
+
+};
+
+const arrayGenerator = (type, object) => {
+  if (type === 'keys') {
+    return Object.keys(object);
+  } else if (type === 'values') {
+    return Object.values(object);
+  } else if (type === 'entries') {
+    return Object.entries(object);
+  }
+};
+
+// console.log(arrayGenerator('keys', { sum: 3, mult: 2, div: 1, sub: 0 }));
+// console.log(arrayGenerator('values', { sum: 3, mult: 2, div: 1, sub: 0 }));
+// console.log(arrayGenerator('entries', { sum: 3, mult: 2, div: 1, sub: 0 }));
 
 module.exports = { calculator, arrayGenerator };

@@ -84,21 +84,23 @@ const order = (str) => meuRestaurante.consumption.push(str);
 
 const pay = () => {
   let bill = 0;
-  const menuDrink = Object.values(meuRestaurante.fetchMenu().drink);
-  const menuFood = Object.values(meuRestaurante.fetchMenu().food);
-  for (let i = 0; i < menuDrink.length; i += 1) {
-      bill += menuDrink[i];
+  const menuDrink = meuRestaurante.fetchMenu().drink;
+  const menuFood = meuRestaurante.fetchMenu().food;
+  const consumo = meuRestaurante.consumption;
+  
+  for (let i = 0; i < consumo.length; i += 1) {
+    if (menuFood[consumo[i]]) {
+      bill += menuFood[consumo[i]];
+    } else if (menuDrink[consumo[i]]) {
+      bill += menuDrink[consumo[i]];
+    }
   }
-  for (let i = 0; i < menuFood.length; i += 1) {
-      bill += menuFood[i];
-  }
-    let finalbill = bill * 1.1;
-  return parseFloat(finalbill.toFixed(2));
+  return parseFloat(bill.toFixed(2));
 };
 
-const createMenu = (comanda) => {
+const createMenu = (object) => {
   meuRestaurante = {
-    fetchMenu: () => comanda,
+    fetchMenu: () => object,
     consumption: [],
     order,
     pay,
@@ -106,20 +108,61 @@ const createMenu = (comanda) => {
   return meuRestaurante;
 };
 
-const objetoRetornado = createMenu({
+createMenu({
   food: { coxinha: 3.90, sopa: 9.90 },
   drink: { agua: 3.90, cerveja: 6.90 },
 });
-
+order('coxinha');
+order('agua');
 order('coxinha');
 
-console.log(Object.values(objetoRetornado.fetchMenu().drink));
-console.log(Object.values(objetoRetornado.fetchMenu().food));
+// console.log(Object.keys(meuRestaurante.fetchMenu().food))
+// console.log(meuRestaurante.fetchMenu().food['coxinha'])
+// console.log(meuRestaurante.fetchMenu().drink['agua'])
+console.log(pay());
 
-console.log(objetoRetornado.pay());
-console.log(objetoRetornado.pay());
-console.log(Object.entries(meuRestaurante.fetchMenu()).length);
+/* DISCLAIMER: Havia me confundido com a informação do cardápio, estava entendendo que seria o pedido sendo passado e, por isso, criei o código abaixo:
+ O colega Gustavo Pospi me fez enxergar esse erro. Fica ai o aprendizado. */
 
-createMenu();
+// let meuRestaurante = {};
+// const order = (str) => meuRestaurante.consumption.push(str);
+
+// const pay = () => {
+  //   let bill = 0;
+  // const menuDrink = Object.values(meuRestaurante.fetchMenu().drink);
+  // const menuFood = Object.values(meuRestaurante.fetchMenu().food);
+  //   for (let i = 0; i < menuDrink.length; i += 1) {
+    //       bill += menuDrink[i];
+//   }
+//   for (let i = 0; i < menuFood.length; i += 1) {
+//       bill += menuFood[i];
+//   }
+//     let finalbill = bill * 1.1;
+//   return parseFloat(finalbill.toFixed(2));
+// };
+
+// const createMenu = (comanda) => {
+//   meuRestaurante = {
+//     fetchMenu: () => comanda,
+//     consumption: [],
+//     order,
+//     pay,
+//   };
+//   return meuRestaurante;
+// };
+
+// const objetoRetornado = createMenu({
+//   food: { coxinha: 3.90, sopa: 9.90 },
+//   drink: { agua: 3.90, cerveja: 6.90 },
+// });
+
+// order('coxinha');
+
+// console.log(Object.values(objetoRetornado.fetchMenu().drink));
+// console.log(Object.values(objetoRetornado.fetchMenu().food));
+
+// console.log(objetoRetornado.pay());
+// console.log(objetoRetornado.pay());
+// console.log(Object.entries(meuRestaurante.fetchMenu()).length);
 
 module.exports = createMenu;

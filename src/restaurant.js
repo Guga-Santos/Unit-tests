@@ -80,20 +80,20 @@
 // DICA: para isso, você precisará percorrer tanto o objeto da chave `food` quanto o objeto da chave `drink`.
 let meuRestaurante = {};
 
-const order = (string) => meuRestaurante.consumption.push(string);
+const order = (str) => meuRestaurante.consumption.push(str);
 
 const pay = () => {
   let bill = 0;
-  let menu = meuRestaurante.fetchMenu();
-  let menuOrder = meuRestaurante.consumption;
-  for (let i = 0; i < menuOrder.length; i += 1) {
-    if (menu.food[menuOrder[i]]) {
-      bill += menu.food[menuOrder[i]];
-    } else if (menu.drink[menuOrder[i]]) {
-      bill += menu.drink[menuOrder[i]];
-    }
+  const menuDrink = Object.values(meuRestaurante.fetchMenu().drink);
+  const menuFood = Object.values(meuRestaurante.fetchMenu().food)
+  for (let i = 0; i < menuDrink.length; i += 1) {
+      bill += menuDrink[i];
   }
-  return bill + (bill * 0.1);
+  for (let i = 0; i < menuFood.length; i += 1) {
+      bill += menuFood[i];
+  }
+    let finalbill = bill * 1.1;
+  return finalbill;
 };
 
 const createMenu = (comanda) => {
@@ -103,14 +103,22 @@ const createMenu = (comanda) => {
     order,
     pay,
   };
-  return meuRestaurante;
+  return meuRestaurante
 };
+
 
 const objetoRetornado = createMenu({
   food: { coxinha: 3.90, sopa: 9.90 },
   drink: { agua: 3.90, cerveja: 6.90 },
 });
-// Testes:
-console.log(objetoRetornado.consumption);
+
+order({
+  food: { coxinha: 3.90, sopa: 9.90 },
+  drink: { agua: 3.90, cerveja: 6.90 },
+});
+
+console.log(objetoRetornado.pay())
+console.log(Object.entries(meuRestaurante.fetchMenu()).length);
+
 
 module.exports = createMenu;

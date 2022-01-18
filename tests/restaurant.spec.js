@@ -56,7 +56,7 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // ```
     it('1: Verifique se o retorno da função createMenu() é um objeto que possui a chave fetchMenu, a qual tem como valor uma função', () => {
       expect(typeof objetoRetornado).toBe('object');
-      expect(typeof objetoRetornado.fetchMenu).toBe('function');
+      expect(typeof objetoRetornado['fetchMenu']).toBe('function');
 
     });
     // TESTE 2: Verifique se 'objetoRetornado.fetchMenu()' retorna um objeto cujas chaves são somente `food` e `drink`, 
@@ -158,7 +158,7 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // objetoRetornado.pay() // Retorno: somaDosPreçosDosPedidos
     // ```
     it('Verifique se, ao chamar "objetoRetornado.pay()", retorna-se a soma dos preços de tudo que foi pedido, conforme registrado em "objetoRetornado.consumption', () => {
-      expect(objetoRetornado.pay()).toBeCloseTo(19.47);
+      expect(objetoRetornado.pay()).toBeCloseTo(27.06);
     });
     // Agora faça o PASSO 4 no arquivo `src/restaurant.js`.
 });

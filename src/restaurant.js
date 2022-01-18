@@ -85,7 +85,7 @@ const order = (str) => meuRestaurante.consumption.push(str);
 const pay = () => {
   let bill = 0;
   const menuDrink = Object.values(meuRestaurante.fetchMenu().drink);
-  const menuFood = Object.values(meuRestaurante.fetchMenu().food)
+  const menuFood = Object.values(meuRestaurante.fetchMenu().food);
   for (let i = 0; i < menuDrink.length; i += 1) {
       bill += menuDrink[i];
   }
@@ -103,9 +103,8 @@ const createMenu = (comanda) => {
     order,
     pay,
   };
-  return meuRestaurante
+  return meuRestaurante;
 };
-
 
 const objetoRetornado = createMenu({
   food: { coxinha: 3.90, sopa: 9.90 },
@@ -117,8 +116,7 @@ order({
   drink: { agua: 3.90, cerveja: 6.90 },
 });
 
-console.log(objetoRetornado.pay())
+console.log(objetoRetornado.pay());
 console.log(Object.entries(meuRestaurante.fetchMenu()).length);
-
 
 module.exports = createMenu;

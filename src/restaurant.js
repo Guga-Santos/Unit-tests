@@ -93,7 +93,7 @@ const pay = () => {
       bill += menuFood[i];
   }
     let finalbill = bill * 1.1;
-  return finalbill;
+  return parseFloat(finalbill.toFixed(2));
 };
 
 const createMenu = (comanda) => {
@@ -111,12 +111,15 @@ const objetoRetornado = createMenu({
   drink: { agua: 3.90, cerveja: 6.90 },
 });
 
-order({
-  food: { coxinha: 3.90, sopa: 9.90 },
-  drink: { agua: 3.90, cerveja: 6.90 },
-});
+order('coxinha');
+
+console.log(Object.values(objetoRetornado.fetchMenu().drink));
+console.log(Object.values(objetoRetornado.fetchMenu().food));
 
 console.log(objetoRetornado.pay());
+console.log(objetoRetornado.pay());
 console.log(Object.entries(meuRestaurante.fetchMenu()).length);
+
+createMenu();
 
 module.exports = createMenu;

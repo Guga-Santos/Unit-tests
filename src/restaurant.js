@@ -95,7 +95,8 @@ const pay = () => {
       bill += menuDrink[consumo[i]];
     }
   }
-  return parseFloat(bill.toFixed(2));
+  let finalbill = bill * 1.1;
+  return parseFloat(finalbill.toFixed(2));
 };
 
 const createMenu = (object) => {
